@@ -29,5 +29,14 @@ public class PlayerController : MonoBehaviour {
 
         if (raycast.collider == null) isJumping = true;
         else isJumping = false;
+
+        if (raycast.collider == null) SetAnimation("jump");
+        else SetAnimation(GetComponent<Rigidbody2D>().velocity.x != 0 ? "run" : "idle");
+    }
+
+    void SetAnimation(string name) {
+        AnimatorControllerParameter[] parametros = GetComponent<Animator>().parameters;
+        foreach (var item in parametros) GetComponent<Animator>().SetBool(item.name, false);
+        GetComponent<Animator>().SetBool(name, true);
     }
 }
