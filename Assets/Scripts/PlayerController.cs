@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
+    [SerializeField] ParticleSystem jumpParticles;
     [SerializeField] float playerSpeed = 1f;
     [SerializeField] float jumpForce = 1f;
     [SerializeField] bool isJumping = false;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour {
             GetComponent<SpriteRenderer>().flipX = true; 
         
         if (Input.GetButtonDown("Fire1") && !isJumping) {
+            jumpParticles.Play();
             AudioManager.instance.PlaySFX("Jump");
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
@@ -40,5 +42,14 @@ public class PlayerController : MonoBehaviour {
         AnimatorControllerParameter[] parametros = GetComponent<Animator>().parameters;
         foreach (var item in parametros) GetComponent<Animator>().SetBool(item.name, false);
         GetComponent<Animator>().SetBool(name, true);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision != null)
+            if (collision.collider.CompareTag("Enemy")) {
+                AudioManager.instance.PlaySFX("Hit");
+                AudioManager.instance.PlayMusic("LoseALife");
+                SCManager.instance.LoadScene("GameOver");
+            }
     }
 }
