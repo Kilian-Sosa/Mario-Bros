@@ -530,8 +530,8 @@ MonoBehaviour:
 
     Press ENTER to PLAY  AGAIN'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1358262e68d5248469f9e5fa2e46e51a, type: 2}
+  m_sharedMaterial: {fileID: 6401571177924493551, guid: 1358262e68d5248469f9e5fa2e46e51a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
