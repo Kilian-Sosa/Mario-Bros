@@ -18,8 +18,10 @@ public class PlayerController : MonoBehaviour {
         if (direction == -1)
             GetComponent<SpriteRenderer>().flipX = true; 
         
-        if (Input.GetButtonDown("Fire1") && !isJumping)
+        if (Input.GetButtonDown("Fire1") && !isJumping) {
+            AudioManager.instance.PlaySFX("Jump");
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
 
         Vector2 origin = new Vector2(transform.position.x, transform.position.y - offset);
         Vector2 target = new Vector2(transform.position.x, transform.position.y - offset - lineLength);
