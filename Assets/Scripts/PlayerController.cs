@@ -6,12 +6,14 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
         float direction = Input.GetAxisRaw("Horizontal");
+
+        GetComponent<Rigidbody2D>().velocity = new Vector2(playerSpeed * direction, GetComponent<Rigidbody2D>().velocity.y);
+
         if (direction == 1) 
-            GetComponent<Rigidbody2D>().velocity = new Vector2(playerSpeed, GetComponent<Rigidbody2D>().velocity.y);
+            GetComponent<SpriteRenderer>().flipX = false;
         if (direction == -1)
-            GetComponent<Rigidbody2D>().velocity = new Vector2(-playerSpeed, GetComponent<Rigidbody2D>().velocity.y);
-        if (direction == 0)
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
+            GetComponent<SpriteRenderer>().flipX = true; 
+        
         if (Input.GetButtonDown("Fire1"))
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
