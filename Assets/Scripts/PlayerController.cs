@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField] ParticleSystem jumpParticles;
@@ -8,6 +10,7 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] float lineLength = 1f;
     [SerializeField] float offset = 1f;
+    private int score = 0;
 
     void Update() {
         float direction = Input.GetAxisRaw("Horizontal");
@@ -45,11 +48,21 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision != null)
+        if (collision != null) {
             if (collision.collider.CompareTag("Enemy")) {
                 AudioManager.instance.PlaySFX("Hit");
                 AudioManager.instance.PlayMusic("LoseALife");
                 SCManager.instance.LoadScene("GameOver");
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision != null) {
+            if (collision.CompareTag("Coin")) {
+                GameObject.Find("Score").GetComponent<TextMeshProUGUI>().text = "Coins: " + ++score;
+                Destroy(collision.gameObject);
+            }
+        }
     }
 }
