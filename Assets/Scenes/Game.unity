@@ -214,7 +214,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &5468624
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9896,7 +9896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpParticles: {fileID: 1372334521}
   playerSpeed: 5
-  jumpForce: 15
+  jumpForce: 25
   isJumping: 0
   lineLength: 0.2
   offset: 0.53

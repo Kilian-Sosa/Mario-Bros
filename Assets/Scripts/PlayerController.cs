@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour {
         if (collision != null) {
             if (collision.CompareTag("Coin")) {
                 GameObject.Find("Score").GetComponent<TextMeshProUGUI>().text = "Coins: " + ++score;
+                AudioManager.instance.PlaySFX("CollectCoin");
                 Destroy(collision.gameObject);
             }
         }
